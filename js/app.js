@@ -4,16 +4,18 @@
 // quando clicar em limpar
 //     tirar itens da lista 
 //     zerar o total
+
+
 carrinho = document.getElementById('lista-produtos');
 
 function adicionar(){
-    var produto = document.getElementById('produto').value;
+    let produto = document.getElementById('produto').value;
     let partesProduto = produto.split(' - R$');
-
-    var nomeProduto = partesProduto[0];
-    valorProduto = partesProduto[1];
-
-    var quantidade = document.getElementById('quantidade').value;
+    let nomeProduto = partesProduto[0];
+    let valorProduto = partesProduto[1];
+    let quantidade = document.getElementById('quantidade').value;
+    let valorTotal = document.getElementById('valor-total');
+    let valor = 0;
 
     if (quantidade > 0){
         let item_carrinho = document.createElement('section');
@@ -22,6 +24,13 @@ function adicionar(){
         carrinho.appendChild(item_carrinho);
     }
 
+    itemsCarrinho = carrinho.getElementsByClassName('carrinho__produtos__produto');
+    for (let i = 0; i< itemsCarrinho.length; i++){
+        let valorProdutoAtual = parseFloat(itemsCarrinho[i].querySelectorAll('.texto-azul')[1].innerHTML.match(/\d+/g));
+        let quantidadeItemAtual = parseInt(itemsCarrinho[i].querySelectorAll('.texto-azul')[0].innerHTML.match(/\d+/g));
+        valor = valor + (valorProdutoAtual * quantidadeItemAtual);
+    }
+    valorTotal.innerText = `R$${valor}`;
 }
 
 function limpar(){
