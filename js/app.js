@@ -6,15 +6,16 @@ function adicionar(){
     let partesProduto = produto.split(' - R$');
     let nomeProduto = partesProduto[0];
     let valorProduto = partesProduto[1];
-    let quantidade = document.getElementById('quantidade').value;
+    let quantidade = document.getElementById('quantidade');
     let valor = 0;
     
-    if (quantidade > 0){
+    if (quantidade.value > 0){
         let item_carrinho = document.createElement('section');
         item_carrinho.classList.add('carrinho__produtos__produto');
-        item_carrinho.innerHTML = `<span class="texto-azul">${quantidade}x</span> ${nomeProduto} <span class="texto-azul">R$${valorProduto}</span>`;
+        item_carrinho.innerHTML = `<span class="texto-azul">${parseInt(quantidade.value)}x</span> ${nomeProduto} <span class="texto-azul">R$${valorProduto}</span>`;
         carrinho.appendChild(item_carrinho);
     }
+    quantidade.value = 0;
 
     itemsCarrinho = carrinho.getElementsByClassName('carrinho__produtos__produto');
     for (let i = 0; i< itemsCarrinho.length; i++){
@@ -29,5 +30,6 @@ function limpar(){
     while (carrinho.firstChild){
     carrinho.removeChild(carrinho.lastChild);
     }
-    valorTotal.innerText = 'R$0'
+    valorTotal.innerText = 'R$0';
+    quantidade.value = 0;
 }
