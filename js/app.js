@@ -15,6 +15,9 @@ function adicionar(){
         item_carrinho.innerHTML = `<span class="texto-azul">${parseInt(quantidade.value)}x</span> ${nomeProduto} <span class="texto-azul">R$${valorProduto}</span>`;
         carrinho.appendChild(item_carrinho);
     }
+    else {
+        alert('Quantidade Inválida, insira um número maior que 0');
+    }
     quantidade.value = 0;
 
     itemsCarrinho = carrinho.getElementsByClassName('carrinho__produtos__produto');
